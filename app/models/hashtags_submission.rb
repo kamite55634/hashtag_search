@@ -3,10 +3,13 @@ class HashtagsSubmission < ApplicationRecord
   belongs_to :submission
 
   def self.search(search)
-    if search && search != ""
+    if search
       submissions_first = []
       words = search.split(/[[:blank:]]+/)
       words.each do |word|
+        $global_hashtags.push(word)
+      end
+      $global_hashtags.each do |word|
         hashtag = Hashtag.find_by("name like ? ", "%#{word}%")
         if hashtag && submissions_first == []
           submissions_first.push(hashtag.submissions)
@@ -18,9 +21,10 @@ class HashtagsSubmission < ApplicationRecord
         end
 
       end
-      $notice = "#{words}の検索結果を表示しています"
+      $notice = "#{$global_hashtags}の検索結果を表示しています"
       return submissions_first.flatten
     else
+      $global_hashtags = nil
       $notice = "全ての投稿を表示しています"
       return Submission.all
     end
