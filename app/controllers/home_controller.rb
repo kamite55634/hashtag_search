@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @submissions = Submission.search(params[:search])
+    @submissions = HashtagsSubmission.search(params[:search])
   end
 end
