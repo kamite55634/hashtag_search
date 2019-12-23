@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Hashtag.create([{ name: 'ヘアカラー' }, { name: '外国人風' }, { name: '新宿' }, { name: '渋谷' }, { name: 'ショートヘアー' }])
+# 20.times do
+#   Submission.create(text: "テストです。テストです。テストです。テストです。")
+# end
+
+20.times do
+  HashtagsSubmission.create(hashtag_id: rand(1..20), submission_id: rand(1..20))
+end

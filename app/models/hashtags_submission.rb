@@ -1,4 +1,4 @@
 class HashtagsSubmission < ApplicationRecord
-  belongs_to :hahstag
+  belongs_to :hashtag
   belongs_to :submission
 end
