@@ -13,3 +13,10 @@
 p{
   color: gray;
 }
+.times{
+  color: red;
+  cursor: pointer;
+  &:hover{
+    color: black
+  }
+}

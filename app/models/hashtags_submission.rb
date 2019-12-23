@@ -9,6 +9,7 @@ class HashtagsSubmission < ApplicationRecord
       words.each do |word|
         $global_hashtags.push(word)
       end
+      $global_hashtags = $global_hashtags.uniq
       $global_hashtags.each do |word|
         hashtag = Hashtag.find_by("name like ? ", "%#{word}%")
         if hashtag && submissions_first == []
@@ -21,7 +22,7 @@ class HashtagsSubmission < ApplicationRecord
         end
 
       end
-      $notice = "#{$global_hashtags}の検索結果を表示しています"
+      $notice = "#{submissions_first.flatten.length}件検索結果を表示しています"
       return submissions_first.flatten
     else
       $global_hashtags = nil

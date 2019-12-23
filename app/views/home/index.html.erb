@@ -1,7 +1,13 @@
 <p>
 <%=$notice%>
 </p>
-
+<% if $global_hashtags %>
+  <p class="searching_hashtags">
+    <% $global_hashtags.each do |search_hashtag| %>
+      [<span class="times" id="times">x</span> #<%= search_hashtag%>]
+    <% end %>
+  </p>
+<% end %>
 <%= form_tag(root_path, method: :get) do %>
   <%= text_field_tag :search %>
   <%= submit_tag "検索"%>
