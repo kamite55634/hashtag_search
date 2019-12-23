@@ -1,19 +1,28 @@
-<%@submissions.each do |submission|%>
-<div class="box">
-  <div>
-  <%=submission.created_at.strftime("%Y-%m-%d %H:%M")%>
+<p>
+<%=$notice%>
+</p>
+<%= form_tag(root_path, method: :get) do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag "検索"%>
+<% end %>
+<% if @submissions %>
+  <%@submissions.each do |submission|%>
+  <div class="box">
+    <div>
+    <%=submission.created_at.strftime("%Y-%m-%d %H:%M")%>
+    </div>
+    <div class="text">
+    <%=submission.text%>
+    </div>
+    <div>
+    <% if submission.hashtags_submissions %>
+      <p>
+        <% submission.hashtags_submissions.each do |group| %>
+          #<%= group.hashtag.name%>
+        <% end %>
+      </p>
+    <% end %>
+    </div>
   </div>
-  <div class="text">
-  <%=submission.text%>
-  </div>
-  <div>
-  <% if submission.hashtags_submissions %>
-    <p>
-      <% submission.hashtags_submissions.each do |group| %>
-        #<%= group.hashtag.name%>
-      <% end %>
-    </p>
-  <% end %>
-  </div>
-</div>
-<%end%>
+  <%end%>
+<% end %>
