@@ -1,11 +1,13 @@
 <%= javascript_include_tag 'home' %>
-<p>
+<p id="result">
 <%=$notice%>
 </p>
 <% if $global_hashtags %>
   <p class="searching_hashtags">
     <% $global_hashtags.each do |search_hashtag| %>
-      [<span class="times" id="times">x</span> #<%= search_hashtag%>]
+    <span id="hash_<%=search_hashtag%>">
+      [<span class="times" id="times">x</span> # <span class="hash_name"><%= search_hashtag%></span>]</li>
+    </span>
     <% end %>
   </p>
 <% end %>
@@ -14,23 +16,23 @@
   <%= submit_tag "検索"%>
 <% end %>
 <% if @submissions %>
+<div id="submissions">
   <%@submissions.each do |submission|%>
   <div class="box">
-    <div>
+    <div class="created_at">
     <%=submission.created_at.strftime("%Y-%m-%d %H:%M")%>
     </div>
     <div class="text">
     <%=submission.text%>
     </div>
-    <div>
     <% if submission.hashtags_submissions %>
-      <p>
+      <p class="hashtags">
         <% submission.hashtags_submissions.each do |group| %>
           #<%= group.hashtag.name%>
         <% end %>
       </p>
     <% end %>
-    </div>
   </div>
   <%end%>
+</div>
 <% end %>
