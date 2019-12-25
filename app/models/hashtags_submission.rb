@@ -4,12 +4,14 @@ class HashtagsSubmission < ApplicationRecord
 
   def self.search(search)
 
-    if search
+    if search || $global_hashtags != []
       submissions_first = []
-      words = search.split(/[[:blank:]]+/)
-      words.each do |word|
-        if word != ""
-          $global_hashtags.push(word)
+      if search
+        words = search.split(/[[:blank:]]+/)
+        words.each do |word|
+          if word != ""
+            $global_hashtags.push(word)
+          end
         end
       end
 

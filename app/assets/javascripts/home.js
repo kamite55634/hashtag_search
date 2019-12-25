@@ -1,5 +1,6 @@
 $(function () {
   $(document).on("click", ".times", function () {
+    $("#loading").addClass("loading")
     var hashtag = $(this).next(".hash_name").html()
     $.ajax({
       type: "GET",
@@ -27,6 +28,7 @@ $(function () {
   });
 
   $(document).on("click", "#search_btn", function () {
+    $("#loading").addClass("loading")
     var search_text = $("#search").val()
     $("#search").val("")
     $.ajax({
@@ -90,5 +92,6 @@ $(function () {
       })
       $("#box_" + index).find(".hashtags").text(hashtags.join(""))
     })
+    $("#loading").removeClass("loading")
   }
 });
