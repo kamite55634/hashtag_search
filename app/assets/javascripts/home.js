@@ -8,8 +8,15 @@ $(function () {
       dataType: "json"
     }).done(function (data) {
       console.log(data)
-      $("#result").text(data.length + "件検索結果を表示しています")
-      $("#hash_" + hashtag).empty()
+
+      var hash_length = $(".searching_hashtags").children().length
+      if (hash_length == 1) {
+        $("#result").text("全ての投稿を表示しています")
+      } else {
+        $("#result").text(data.length + "件検索結果を表示しています")
+      }
+
+      $("#hash_" + hashtag).remove()
 
       show_hashtag(data)
 
@@ -30,9 +37,24 @@ $(function () {
 
     }).done(function (data) {
       console.log(data)
-      $("#result").text(data.length + "件検索結果を表示しています")
+      $("#result").text(data.length + "件検索結果を表示しています");
       if (search_text) {
-        $(".searching_hashtags").append('<span id="hash_' + search_text + '"> [<span class="times" id="times">x</span> # <span class="hash_name">' + search_text + '</span>]</span>')
+        searches = search_text.split(/ |　/)
+
+        var children = $(".searching_hashtags").children();
+
+        $.each(searches, function (index, search) {
+
+          hashtag_double = true
+          $.each(children, function (index, child) {
+            if (child.id == "hash_" + search) {
+              hashtag_double = false
+            }
+          });
+          if (hashtag_double && search) {
+            $(".searching_hashtags").append('<span id="hash_' + search + '"> [<span class="times" id="times">x</span> # <span class="hash_name">' + search + '</span>]</span>')
+          }
+        })
       }
 
       show_hashtag(data)
