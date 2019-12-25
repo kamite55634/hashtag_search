@@ -2,18 +2,18 @@
 <p id="result">
 <%=$notice%>
 </p>
-<% if $global_hashtags %>
-  <p class="searching_hashtags">
-    <% $global_hashtags.each do |search_hashtag| %>
-    <span id="hash_<%=search_hashtag%>">
-      [<span class="times" id="times">x</span> # <span class="hash_name"><%= search_hashtag%></span>]</li>
-    </span>
-    <% end %>
-  </p>
-<% end %>
-<%= form_tag(root_path, method: :get) do %>
+<p class="searching_hashtags">
+  <% if $global_hashtags %>
+      <% $global_hashtags.each do |search_hashtag| %>
+      <span id="hash_<%=search_hashtag%>">
+        [<span class="times" id="times">x</span> # <span class="hash_name"><%= search_hashtag%></span>]
+      </span>
+      <% end %>
+  <% end %>
+</p>
+<%= form_tag "",remote: true, method: :get do %>
   <%= text_field_tag :search %>
-  <%= submit_tag "検索"%>
+  <%= submit_tag "検索", id: :search_btn %>
 <% end %>
 <% if @submissions %>
 <div id="submissions">

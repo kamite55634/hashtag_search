@@ -11,7 +11,9 @@ class HashtagsSubmission < ApplicationRecord
       end
       $global_hashtags = $global_hashtags.uniq
       $global_hashtags.each do |word|
-        hashtag = Hashtag.find_by("name like ? ", "%#{word}%")
+        if word != ""
+          hashtag = Hashtag.find_by("name like ? ", "%#{word}%")
+        end
         if hashtag && submissions_first == []
           submissions_first.push(hashtag.submissions)
 
