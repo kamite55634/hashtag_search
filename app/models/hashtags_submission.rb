@@ -36,7 +36,7 @@ class HashtagsSubmission < ApplicationRecord
 
       end
       $notice = "#{submissions_first.flatten.length}件検索結果を表示しています"
-      return submissions_first.flatten
+      return submissions_first.flatten.uniq
     else
       $notice = "全ての投稿を表示しています"
       return Submission.all
