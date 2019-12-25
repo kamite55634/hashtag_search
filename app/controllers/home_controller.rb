@@ -19,9 +19,6 @@ class HomeController < ApplicationController
     if $global_hashtags == nil
       $global_hashtags = []
     end
-    if params[:text] != ""
-      $global_hashtags.push(params[:text])
-    end
     @submissions = HashtagsSubmission.search(params[:text])
     respond_to do |format|
       format.json {render :hashtag}

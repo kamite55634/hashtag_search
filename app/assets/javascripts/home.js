@@ -31,7 +31,9 @@ $(function () {
     }).done(function (data) {
       console.log(data)
       $("#result").text(data.length + "件検索結果を表示しています")
-      $(".searching_hashtags").append('<span id="hash_' + search_text + '"> [<span class="times" id="times">x</span> # <span class="hash_name">' + search_text + '</span>]</span>')
+      if (search_text) {
+        $(".searching_hashtags").append('<span id="hash_' + search_text + '"> [<span class="times" id="times">x</span> # <span class="hash_name">' + search_text + '</span>]</span>')
+      }
 
       show_hashtag(data)
 
@@ -47,7 +49,13 @@ $(function () {
 
       $("#submissions").append('<div class="box" id="box_' + index + '"><div class="created_at"></div > <div class="text"></div> <p class="hashtags"></p></div > ')
 
-      var created_at = submission.created_at
+      let date = new Date(submission.created_at)
+      let YYYY = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      let DD = date.getDate();
+      let hh = date.getHours();
+      let mm = date.getMinutes();
+      let created_at = YYYY + "-" + MM + "-" + DD + " " + hh + ":" + mm
       $("#box_" + index).find(".created_at").text(created_at)
 
       var text = submission.text
