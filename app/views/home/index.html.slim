@@ -21,14 +21,14 @@ p.searching_hashtags
 
 - if @submissions
   #submissions
-  - @submissions.each do |submission|
-    .box
-      .crearted_at
-        =submission.created_at.strftime("%Y-%m-%d %H:%M")
-      .text
-        =submission.text
-      - if submission.hashtags_submissions
-        p.hashtags
-          - submission.hashtags_submissions.each do |group|
-            ' #
-            =group.hashtag.name
+    - @submissions.each do |submission|
+      .box
+        .crearted_at
+          =submission.created_at.strftime("%Y-%m-%d %H:%M")
+        .text
+          =submission.text
+        - if submission.hashtags_submissions
+          p.hashtags
+            - submission.hashtags_submissions.each do |group|
+              ' #
+              =group.hashtag.name
