@@ -54,7 +54,7 @@ $(function () {
             }
           });
           if (hashtag_double && search) {
-            $(".searching_hashtags").append('<span id="hash_' + search + '"> [<span class="times" id="times">x</span> # <span class="hash_name">' + search + '</span>]</span>')
+            $(".searching_hashtags").append('<span id="hash_' + search + '"> [<span class="times" id="times"> x </span> # <span class="hash_name">' + search + '</span>]</span>')
           }
         })
       }

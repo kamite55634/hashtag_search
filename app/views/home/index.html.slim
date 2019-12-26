@@ -10,7 +10,7 @@ p.searching_hashtags
     - $global_hashtags.each do |search_hashtag|
       span id="hash_#{search_hashtag}"
         '[
-        span.times#times x&nbsp;
+        span.times#times x&nbsp
         ' #
         span.hash_name =search_hashtag
         ']
@@ -30,5 +30,4 @@ p.searching_hashtags
         - if submission.hashtags_submissions
           p.hashtags
             - submission.hashtags_submissions.each do |group|
-              ' #
-              =group.hashtag.name
+              '##{group.hashtag.name}
